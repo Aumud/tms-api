@@ -1,0 +1,49 @@
+using TMS.Models;
+
+var builder = WebApplication.CreateBuilder(args);
+// Add services to the container.
+
+builder.Services.AddOptions<PaymentOptions>()
+    .BindConfiguration("Payments")
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
+
+builder.Services.AddScoped<EnrollmentWorker>();
+builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
+
+builder.Services.AddControllers();
+
+builder.Host.UseDefaultServiceProvider(options =>
+{
+options.ValidateScopes = true;
+options.ValidateOnBuild = true;
+});
+
+
+
+
+
+
+var app = builder.Build();
+// Configure the HTTP request pipeline.
+
+app.MapGet("/api/enrollments/worker-smoke", (EnrollmentWorker worker) =>
+{
+worker.ProcessBatch();
+return Results.Ok("processed");
+});
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
+
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+
