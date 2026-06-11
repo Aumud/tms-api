@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.OpenApi;
+using Scalar.AspNetCore;
 using TMS.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
-
+builder.Services.AddOpenApi();
+builder.Services.AddProblemDetails();
 builder.Services.AddOptions<PaymentOptions>()
     .BindConfiguration("Payments")
     .ValidateDataAnnotations()
@@ -11,6 +14,7 @@ builder.Services.AddOptions<PaymentOptions>()
 
 builder.Services.AddScoped<EnrollmentWorker>();
 builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
+
 
 builder.Services.AddControllers();
 
@@ -39,11 +43,28 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 }
 
+app.MapGet("/api/error", () =>
+{
+throw new TmsDatabaseException("Simulated database failure for ProblemDetails testing");
+});
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+    app.MapScalarApiReference();
+}
+else
+{
+    app.UseExceptionHandler(); 
+}
 
 
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseExceptionHandler();
+ app.UseStatusCodePages();
+
 
 app.Run();
 

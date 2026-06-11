@@ -26,3 +26,10 @@ C:\Users\CSUG\TmsApi\obj\Debug\net10.0\refint\TmsApi.dll
 C:\Users\CSUG\TmsApi\obj\Debug\net10.0\TmsApi.pdb
 C:\Users\CSUG\TmsApi\obj\Debug\net10.0\TmsApi.genruntimeconfig.cache
 C:\Users\CSUG\TmsApi\obj\Debug\net10.0\ref\TmsApi.dll
+C:\Users\CSUG\TmsApi\obj\Debug\net10.0\TmsApi.sourcelink.json
+C:\Users\CSUG\TmsApi\obj\Debug\net10.0\TmsApi.csproj.AssemblyReference.cache
+C:\Users\CSUG\TmsApi\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\CSUG\TmsApi\bin\Debug\net10.0\Microsoft.OpenApi.dll
+C:\Users\CSUG\TmsApi\bin\Debug\net10.0\Scalar.AspNetCore.dll
+C:\Users\CSUG\TmsApi\obj\Debug\net10.0\TmsApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\CSUG\TmsApi\obj\Debug\net10.0\TmsApi.csproj.Up2Date

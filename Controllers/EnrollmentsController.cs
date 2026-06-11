@@ -30,6 +30,16 @@ public async Task<IActionResult> Delete(string id)
 var deleted = await enrollmentService.DeleteAsync(id);
 return deleted ? NoContent() : NotFound();
 }
+[Route("api/[controller]")]
+public class ErrorController : ControllerBase
+{
+    [HttpGet]
+    public IActionResult Get()
+    {
+        throw new Exception("Intentional test error");
+    }
 }
+}
+
 
 public record CreateEnrollmentRequest(string StudentId, string CourseCode);
