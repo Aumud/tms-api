@@ -37,3 +37,47 @@ curl http://localhost:5196/api/error
 
 ###
 
+curl http://localhost:5196/api/students
+
+###
+
+curl -X POST http://localhost:5196/api/students \
+-H "Content-Type: application/json" \
+-d '{"studentId":"S-001","courseCode":"CS-101"}'
+
+###
+
+
+curl http://localhost:5196/api/students/{id}
+
+###
+
+curl -X DELETE http://localhost:5196/api/students/{id}
+
+###
+
+curl http://localhost:5196/api/students/{id}
+
+###
+
+curl http://localhost:5196/api/courses
+
+###
+
+curl -X POST http://localhost:5196/api/courses \
+-H "Content-Type: application/json" \
+-d '{"studentId":"S-001","courseCode":"CS-101"}'
+
+###
+
+
+curl http://localhost:5196/api/courses/{courseCode}
+
+###
+
+curl -X DELETE http://localhost:5196/api/courses/{courseCode}
+
+###
+
+curl http://localhost:5196/api/courses/{courseCode}
+###

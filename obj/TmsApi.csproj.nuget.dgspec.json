@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CSUG\\TmsApi\\TmsApi.csproj": {}
+    "C:\\Users\\CSUG\\TmsApi\\tms-api\\TmsApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CSUG\\TmsApi\\TmsApi.csproj": {
+    "C:\\Users\\CSUG\\TmsApi\\tms-api\\TmsApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CSUG\\TmsApi\\TmsApi.csproj",
+        "projectUniqueName": "C:\\Users\\CSUG\\TmsApi\\tms-api\\TmsApi.csproj",
         "projectName": "TmsApi",
-        "projectPath": "C:\\Users\\CSUG\\TmsApi\\TmsApi.csproj",
+        "projectPath": "C:\\Users\\CSUG\\TmsApi\\tms-api\\TmsApi.csproj",
         "packagesPath": "C:\\Users\\CSUG\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CSUG\\TmsApi\\obj\\",
+        "outputPath": "C:\\Users\\CSUG\\TmsApi\\tms-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\CSUG\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -50,9 +50,25 @@
               "target": "Package",
               "version": "[10.0.0, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.9, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
             "Scalar.AspNetCore": {
               "target": "Package",
-              "version": "[2.16.2, )"
+              "version": "[2.16.3, )"
             }
           },
           "imports": [
@@ -74,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
