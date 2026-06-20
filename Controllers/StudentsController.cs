@@ -30,7 +30,7 @@ public async Task<IActionResult> GetById(string id)
 public async Task<IActionResult> Create([FromBody] CreateStudentRequest request)
     {
         var student = await studentService.CreateAsync(
-            request.Id,
+            request.RegistrationNumber,
             request.Name,
             request.Age,
             request.GPA);

@@ -81,3 +81,11 @@ curl -X DELETE http://localhost:5196/api/courses/{courseCode}
 
 curl http://localhost:5196/api/courses/{courseCode}
 ###
+
+curl http://localhost:5196/api/test/deferred
+
+###
+
+curl http://localhost:5196/api/test/translation-fail
+
+###

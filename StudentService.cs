@@ -1,10 +1,11 @@
 // --- The contract ---
+using TmsApi.Entities;
 public interface IStudentService
 {
-    Task<Student> CreateAsync(string id, string name, int age, decimal gpa);
-    Task<Student?> GetByIdAsync(string id);
+    Task<Student> CreateAsync(string RegistrationNumber, string name, int age, decimal gpa);
+    Task<Student?> GetByIdAsync(string RegistrationNumber);
     Task<IReadOnlyList<Student>> GetAllAsync();
-    Task<bool> DeleteAsync(string id);
+    Task<bool> DeleteAsync(string RegistrationNumber);
 }
 
 // --- The in-memory implementation ---
@@ -18,28 +19,34 @@ public class StudentService : IStudentService
         _logger = logger;
     }
 
-    public Task<Student> CreateAsync(string id, string name, int age, decimal gpa)
+    public Task<Student> CreateAsync(string RegistrationNumber, string name, int age, decimal gpa)
     {
-        if (_store.ContainsKey(id))
+        if (_store.ContainsKey(RegistrationNumber))
         {
-            _logger.LogWarning("Student {Id} already exists", id);
-            throw new InvalidOperationException($"Student with id {id} already exists");
+            _logger.LogWarning("Student {Id} already exists", RegistrationNumber);
+            throw new InvalidOperationException($"Student with id {RegistrationNumber} already exists");
         }
 
-        var student = new Student(id, name, age, gpa);
-        _store[id] = student;
+        var student = new Student
+            {
+                RegistrationNumber = RegistrationNumber,
+                Name = name,
+                GPA = gpa,
+                IsActive = true
+            };
+            _store[RegistrationNumber] = student;
 
-        _logger.LogInformation("Created student {Id} {Name}", id, name);
+        _logger.LogInformation("Created student {Id} {Name}", RegistrationNumber, name);
         return Task.FromResult(student);
     }
 
-    public Task<Student?> GetByIdAsync(string id)
+    public Task<Student?> GetByIdAsync(string RegistrationNumber)
     {
-        _store.TryGetValue(id, out var student);
+        _store.TryGetValue(RegistrationNumber, out var student);
 
         if (student is null)
         {
-            _logger.LogWarning("Student {Id} not found", id);
+            _logger.LogWarning("Student {Id} not found", RegistrationNumber);
         }
 
         return Task.FromResult(student);
@@ -51,28 +58,17 @@ public class StudentService : IStudentService
         return Task.FromResult(all);
     }
 
-    public Task<bool> DeleteAsync(string id)
+    public Task<bool> DeleteAsync(string RegistrationNumber)
     {
-        var removed = _store.Remove(id);
+        var removed = _store.Remove(RegistrationNumber);
 
         if (removed)
-            _logger.LogInformation("Deleted student {Id}", id);
+            _logger.LogInformation("Deleted student {Id}", RegistrationNumber);
         else
-            _logger.LogWarning("Delete failed student {Id} not found", id);
+            _logger.LogWarning("Delete failed student {Id} not found", RegistrationNumber);
 
         return Task.FromResult(removed);
     }
 }
 
 // --- The data shape ---
-public record Student(
-    string Id,
-    string Name,
-    int Age,
-    decimal GPA);
-
-public record CreateStudentRequest(
-    string Id,
-    string Name,
-    int Age,
-    decimal GPA);
